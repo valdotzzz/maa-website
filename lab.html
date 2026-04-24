@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1-Minute Rotoscope | MAA Laboratory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #f5f5f5;
+      --surface: #ffffff;
+      --border:  #e0e0e0;
+      --accent:  #008a3d;
+      --text:    #111111;
+      --muted:   #4a4a4a;
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Noto Sans', sans-serif; line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 2.5rem; background: rgba(245, 245, 245, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+    
+    .wrap { max-width: 900px; margin: 0 auto; padding: 8rem 2.5rem 5rem; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--muted); text-decoration: none; font-weight: 700; margin-bottom: 2rem; }
+    .proj-title { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+
+    /* ── VIDEO EMBED WRAPPER ── */
+    .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 4rem; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    .sec { border-top: 2px solid var(--text); margin-bottom: 3rem; padding-top: 2rem; }
+    .sec-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-bottom: 2.5rem; display: block; }
+    
+    .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+    .detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
+    .detail-card h4 { font-size: 0.85rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 800; }
+    .detail-card ul { list-style: none; font-size: 0.9rem; }
+
+    .log-container { display: flex; flex-direction: column; gap: 1.5rem; }
+    .week-entry { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; display: grid; grid-template-columns: 100px 1fr; overflow: hidden; }
+    .week-meta { background: #fafafa; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: flex-start; justify-content: center; }
+    .week-num { font-weight: 800; font-size: 0.85rem; color: var(--accent); text-transform: uppercase; margin-top: 5px; }
+    .week-content { padding: 1.5rem 2rem; }
+    .week-title { font-weight: 800; font-size: 1rem; margin-bottom: 0.5rem; color: var(--text); }
+    .week-text { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    .week-video-embed { width: 100%; aspect-ratio: 16/9; background: #eee; border-radius: 2px; overflow: hidden; border: 1px solid var(--border); }
+    .week-video-embed iframe { width: 100%; height: 100%; border: 0; }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; font-size: 0.85rem; color: var(--muted); background: var(--surface); }
+
+    @media (max-width: 600px) {
+      .week-entry { grid-template-columns: 1fr; }
+      .week-meta { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav><a class="nav-logo" href="index.html">MAA Portfolio</a></nav>
+
+  <div class="wrap">
+    <a class="back-link" href="index.html">← Back to Overview</a>
+    <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Laboratory</p>
+    <h1 class="proj-title">1-Minute Video Rotoscope</h1>
+
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    </div>
+
+    <div class="sec">
+      <span class="sec-label">Technical Specifications</span>
+      <div class="details-grid">
+        <div class="detail-card">
+          <h4>Software</h4>
+          <ul><li>Adobe After Effects</li><li>DaVinci Resolve</li></ul>
+        </div>
+        <div class="detail-card">
+          <h4>Parameters</h4>
+          <ul><li>1080p Resolution</li><li>30 FPS</li><li>1 Minute Duration</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <span class="sec-label">Development Log</span>
+      <div class="log-container" id="log-container">
+        <script>
+          const weeklyVideos = {
+            1: "ZiYtg9HleNA",
+            //2: "dQw4w9WgXcQ",
+          };
+
+          const container = document.getElementById('log-container');
+          
+          for (let i = 1; i <= 12; i++) {
+            const vidId = weeklyVideos[i] || "ZiYtg9HleNA";
+
+            document.write(`
+              <div class="week-entry">
+                <div class="week-meta">
+                  <span class="week-num">Week ${i}</span>
+                </div>
+                <div class="week-content">
+                  <div class="week-video-embed">
+                    <iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+            `);
+          }
+      </script>
+    </div>
+    </div>
+  </div>
+  <footer>Gean Clyde H. Valdez · BSIT-S-2A</footer>
+</body>
+</html>
