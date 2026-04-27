@@ -51,6 +51,9 @@
       .week-entry { grid-template-columns: 1fr; }
       .week-meta { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
     }
+    .disclaimer-box {background: #fdfdfd;border: 1px solid var(--border);border-left: 4px solid var(--accent); padding: 1.2rem 1.5rem; margin-bottom: 3rem; border-radius: 4px; }
+    .disclaimer-box p {font-size: 0.85rem; color: var(--muted);line-height: 1.5; }
+    .disclaimer-box strong {color: var(--text);text-transform: uppercase;font-size: 0.75rem;letter-spacing: 0.05em;display: block;margin-bottom: 0.4rem;}
   </style>
 </head>
 <body>
@@ -61,10 +64,19 @@
     <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Laboratory</p>
     <h1 class="proj-title">1-Minute Video Rotoscope</h1>
 
+    <h2>Reference Video</h2>
     <div class="video-container">
       <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="Featured Rotoscope Project" allowfullscreen></iframe>
     </div>
-
+    <div class="disclaimer-box">
+      <strong>Reference Content Notice</strong>
+      <p>
+        The video above is used as a <b>primary reference</b> for this rotoscoping project. 
+        It is featured here for educational and non-commercial purposes to demonstrate the 
+        frame-by-frame tracing process and the relationship between the original live-action 
+        footage and the final animated output.
+      </p>
+    </div>
     <div class="sec">
       <h2>Technical Specifications</h2>
       <div class="details-grid">
