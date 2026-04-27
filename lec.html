@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3D Solar System | MAA Lecture</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -32,7 +33,7 @@
     
     .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
     .detail-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem; }
-    .detail-card h4 { font-size: 0.85rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 800; }
+    .detail-card h3 { font-size: 0.85rem; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 800; }
     .detail-card ul { list-style: none; font-size: 0.9rem; }
 
     .calc-box { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; margin-bottom: 4rem; }
@@ -47,9 +48,13 @@
     .week-content { padding: 1.5rem 2rem; }
 
     .week-video-embed { width: 100%; aspect-ratio: 16/9; background: #eee; border-radius: 2px; overflow: hidden; border: 1px solid var(--border); }
-    .week-video-embed iframe { width: 100%; height: 100%; border: 0; }
 
     footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; font-size: 0.85rem; color: var(--muted); background: var(--surface); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     @media (max-width: 600px) {
       .week-entry { grid-template-columns: 1fr; }
@@ -66,66 +71,103 @@
     <h1 class="proj-title">3D Solar System</h1>
 
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="3D Solar System Preview" allowfullscreen></iframe>
     </div>
 
     <div class="sec">
-      <span class="sec-label">Technical Specifications</span>
+      <h2 class="sec-label">Technical Specifications</h2>
       <div class="details-grid">
         <div class="detail-card">
-          <h4>Software & Engine</h4>
+          <h3>Software & Engine</h3>
           <ul><li>Blender 5.1</li><li>Python Scripting</li></ul>
         </div>
-        <!-- <div class="detail-card">
-          <h4>Output</h4>
-          <ul><li>3,500 Frames</li><li>13.5h Render Time</li><li>60 FPS</li></ul>
-        </div> -->
       </div>
     </div>
 
     <div class="calc-box">
-      <h3 style="font-weight: 800; margin-bottom: 0.5rem;">Planetary Data Calculator</h3>
+      <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Planetary Data Calculator</h2>
       <div class="calc-row">
-        <input type="number" id="earthYears" placeholder="Enter Earth years..." />
+        <input type="number" id="earthYears" placeholder="Enter Earth years...">
         <button onclick="calculate()">Calculate</button>
       </div>
       <div id="planetGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
     </div>
 
     <div class="sec">
-      <span class="sec-label">Development Log</span>
-      <div class="log-container" id="log-container">
-        <script>
-          const weeklyVideos = {
-            1: "ZiYtg9HleNA",
-            //2: "s",
-          };
-
-          const container = document.getElementById('log-container');
-          
-          for (let i = 1; i <= 12; i++) {
-            const vidId = weeklyVideos[i] || "ZiYtg9HleNA";
-
-            document.write(`
-              <div class="week-entry">
-                <div class="week-meta">
-                  <span class="week-num">Week ${i}</span>
-                </div>
-                <div class="week-content">
-                  <div class="week-video-embed">
-                    <iframe src="https://www.youtube.com/embed/${vidId}" allowfullscreen></iframe>
-                  </div>
-                </div>
-              </div>
-            `);
-          }
-      </script>
-    </div>
+      <h2 class="sec-label">Development Log</h2>
+      <div class="log-container" id="log-container"></div>
     </div>
   </div>
+
   <footer>Gean Clyde H. Valdez · BSIT-S-2A</footer>
+
   <script>
-    function calculate() { /* Calculator logic remains same */ }
+    // Age Calculator Logic
+    function calculate() {
+      const earthAge = document.getElementById('earthYears').value;
+      const grid = document.getElementById('planetGrid');
+      
+      if (!earthAge || earthAge <= 0) {
+        grid.innerHTML = '<p style="color: var(--muted); font-size: 0.85rem; padding: 1rem;">Please enter a valid age.</p>';
+        return;
+      }
+
+      const planets = [
+        { name: "Mercury", period: 0.2408, emoji: "☿️" },
+        { name: "Venus", period: 0.6152, emoji: "♀️" },
+        { name: "Mars", period: 1.8808, emoji: "♂️" },
+        { name: "Jupiter", period: 11.862, emoji: "♃" },
+        { name: "Saturn", period: 29.447, emoji: "♄" },
+        { name: "Uranus", period: 84.016, emoji: "⛢" },
+        { name: "Neptune", period: 164.79, emoji: "♆" }
+      ];
+
+      let html = '';
+      planets.forEach(planet => {
+        const planetAge = (earthAge / planet.period).toFixed(2);
+        html += `
+          <div class="detail-card" style="animation: fadeUp 0.4s ease forwards;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <h3>${planet.name}</h3>
+              <span style="font-size: 1.2rem;">${planet.emoji}</span>
+            </div>
+            <p style="font-family: 'Noto Sans Mono', monospace; font-size: 1.1rem; font-weight: 700;">
+              ${planetAge} <span style="font-size: 0.7rem; color: var(--muted);">years old</span>
+            </p>
+            <p style="font-size: 0.7rem; color: var(--muted); margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
+              1 Year = ${planet.period} Earth yrs
+            </p>
+          </div>
+        `;
+      });
+      grid.innerHTML = html;
+    }
+
+    // Development Log Generation
+    const weeklyVideos = { 1: "videos/Earth.mp4" };
+    const container = document.getElementById('log-container');
+    let logHTML = '';
+    
+    for (let i = 1; i <= 12; i++) {
+      const videoPath = weeklyVideos[i] || "videos/na.mp4";
+      logHTML += `
+        <div class="week-entry">
+          <div class="week-meta">
+            <span class="week-num">Week ${i}</span>
+          </div>
+          <div class="week-content">
+            <div class="week-video-embed">
+              <video style="width: 100%; height: 100%; background: #000; display: block;" 
+                     autoplay loop muted playsinline preload="auto">
+                <source src="${videoPath}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+    if (container) container.innerHTML = logHTML;
   </script>
 </body>
 </html>

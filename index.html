@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multimedia & Authoring Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multimedia & Authoring Portfolio | Gean Clyde H. Valdez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* Soft off-white background to reduce eye strain */
-      --bg:        #f5f5f5; 
-      /* Pure white for containers to create subtle depth */
-      --surface:   #ffffff; 
-      /* Subtle structural borders */
-      --border:    #e0e0e0; 
-      /* Crisp, functional green */
-      --accent:    #008a3d; 
-      /* Stark black for high contrast readability */
-      --text:      #111111; 
-      /* Dark gray for secondary text */
-      --muted:     #4a4a4a; 
+      --bg:      #f5f5f5; 
+      --surface: #ffffff; 
+      --border:  #e0e0e0; 
+      --accent:  #008a3d; 
+      --text:    #111111; 
+      --muted:   #4a4a4a; 
     }
 
     html { scroll-behavior: smooth; }
@@ -107,7 +102,7 @@
       color: var(--text);
     }
 
-    /* ── CARDS (Stacked Row Layout) ── */
+    /* ── CARDS ── */
     .cards { display: grid; gap: 2rem; }
 
     .card {
@@ -151,9 +146,7 @@
       font-size: 0.95rem; color: var(--muted);
       line-height: 1.6; flex-grow: 1; margin-bottom: 1.5rem;
     }
-    .card-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .tag {
       font-size: 0.75rem; padding: 0.3rem 0.8rem;
       background: var(--bg); border: 1px solid var(--border); 
@@ -166,9 +159,7 @@
       margin-top: 1.5rem; align-self: flex-start;
       transition: background 0.2s;
     }
-    .card:hover .card-arrow {
-      background: var(--accent);
-    }
+    .card:hover .card-arrow { background: var(--accent); }
 
     /* ── FOOTER ── */
     footer {
@@ -179,7 +170,7 @@
       background: var(--surface);
     }
 
-    /* ── FADE IN ── */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(10px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -231,9 +222,8 @@
       </div>
 
       <div class="cards">
-
         <a class="card" href="lab.html">
-          <div class="card-img-placeholder">🎬</div>
+          <div class="card-img-placeholder" aria-hidden="true">🎬</div>
           <div class="card-body">
             <div>
               <p class="card-type">Laboratory - Rotoscoping</p>
@@ -244,7 +234,6 @@
               <div class="card-tags">
                 <span class="tag">Adobe After Effects</span>
                 <span class="tag">DaVinci Resolve</span>
-                <!-- <span class="tag"></span> -->
               </div>
             </div>
             <div class="card-arrow">View Project →</div>
@@ -252,25 +241,22 @@
         </a>
 
         <a class="card" href="lec.html">
-          <div class="card-img-placeholder">🪐</div>
+          <div class="card-img-placeholder" aria-hidden="true">🪐</div>
           <div class="card-body">
             <div>
               <p class="card-type">Lecture - 3D Rendering</p>
               <h3 class="card-title">3D Solar System</h3>
               <p class="card-desc">
-                A procedurally generated 3D solar system animation in Blender using Python
-                scripting.
+                A procedurally generated 3D solar system animation in Blender using Python scripting.
               </p>
               <div class="card-tags">
                 <span class="tag">Blender 5.1</span>
                 <span class="tag">Python Scripting</span>
-                <!-- <span class="tag"></span> -->
               </div>
             </div>
             <div class="card-arrow">View Project →</div>
           </div>
         </a>
-
       </div>
     </section>
   </main>
