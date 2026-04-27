@@ -41,12 +41,20 @@
     .calc-row input { flex: 1; background: var(--bg); border: 1px solid var(--border); padding: 0.8rem 1.2rem; font-family: 'Noto Sans Mono', monospace; outline: none;}
     .calc-row button { background: var(--text); color: var(--surface); border: none; cursor: pointer; padding: 0 2rem; font-weight: 700; }
 
+    /* New Celestial List Styles */
+    .celestial-list { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem; }
+    .celestial-row { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; display: grid; grid-template-columns: 280px 1fr; overflow: hidden; }
+    .celestial-vid { width: 100%; aspect-ratio: 16/9; background: #000; border-right: 1px solid var(--border); object-fit: cover; }
+    .celestial-info { padding: 1.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+    .celestial-info h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.2rem; letter-spacing: -0.02em; }
+    .celestial-meta { font-family: 'Noto Sans Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 1rem; text-transform: uppercase; font-weight: 600; }
+    .celestial-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.5; }
+
     .log-container { display: flex; flex-direction: column; gap: 1.5rem; }
     .week-entry { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; display: grid; grid-template-columns: 100px 1fr; overflow: hidden; }
     .week-meta { background: #fafafa; border-right: 1px solid var(--border); padding: 1.5rem; display: flex; align-items: flex-start; justify-content: center; }
     .week-num { font-weight: 800; font-size: 0.85rem; color: var(--accent); text-transform: uppercase; margin-top: 5px; }
     .week-content { padding: 1.5rem 2rem; }
-
     .week-video-embed { width: 100%; aspect-ratio: 16/9; background: #eee; border-radius: 2px; overflow: hidden; border: 1px solid var(--border); }
 
     footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; font-size: 0.85rem; color: var(--muted); background: var(--surface); }
@@ -56,9 +64,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
       .week-entry { grid-template-columns: 1fr; }
       .week-meta { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+      .celestial-row { grid-template-columns: 1fr; }
+      .celestial-vid { border-right: none; border-bottom: 1px solid var(--border); }
     }
   </style>
 </head>
@@ -69,10 +79,6 @@
     <a class="back-link" href="index.html">← Back to Overview</a>
     <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Lecture</p>
     <h1 class="proj-title">3D Solar System</h1>
-
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="3D Solar System Preview" allowfullscreen></iframe>
-    </div>
 
     <div class="sec">
       <h2 class="sec-label">Technical Specifications</h2>
@@ -94,6 +100,103 @@
     </div>
 
     <div class="sec">
+      <h2 class="sec-label">Celestial Bodies Overview</h2>
+      <div class="celestial-list">
+        
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Sun</h3>
+            <div class="celestial-meta">Star • Yellow Dwarf</div>
+            <p class="celestial-desc">A nearly perfect sphere of hot plasma at the center of our solar system, driving weather, ocean currents, seasons, and making life on Earth possible.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Mercury</h3>
+            <div class="celestial-meta">Terrestrial Planet • 1st from Sun</div>
+            <p class="celestial-desc">The smallest planet in our solar system and the closest to the Sun. It has a solid, cratered surface heavily influenced by space weather.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Venus</h3>
+            <div class="celestial-meta">Terrestrial Planet • 2nd from Sun</div>
+            <p class="celestial-desc">Earth's "sister planet" is characterized by a thick, toxic atmosphere filled with carbon dioxide, making it the hottest planet in the solar system.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/Earth.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Earth</h3>
+            <div class="celestial-meta">Terrestrial Planet • 3rd from Sun</div>
+            <p class="celestial-desc">Our home planet. It is a water-rich world and currently the only known celestial body in the universe to harbor life.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Earth's Moon</h3>
+            <div class="celestial-meta">Natural Satellite</div>
+            <p class="celestial-desc">Earth's only natural satellite. Its gravitational pull causes ocean tides, stabilizes Earth's wobble, and dictates our seasons.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Mars</h3>
+            <div class="celestial-meta">Terrestrial Planet • 4th from Sun</div>
+            <p class="celestial-desc">Known as the Red Planet due to iron oxide on its surface. It is a dusty, cold, desert world with a very thin atmosphere.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Jupiter</h3>
+            <div class="celestial-meta">Gas Giant • 5th from Sun</div>
+            <p class="celestial-desc">The largest planet in our solar system. It is a gas giant known for its Great Red Spot, a storm that has been raging for centuries.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Saturn</h3>
+            <div class="celestial-meta">Gas Giant • 6th from Sun</div>
+            <p class="celestial-desc">Distinguished by its massive, complex, and beautiful ring system made primarily of ice particles, rocky debris, and dust.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Uranus</h3>
+            <div class="celestial-meta">Ice Giant • 7th from Sun</div>
+            <p class="celestial-desc">An ice giant that rotates completely on its side. It is composed primarily of a hot, dense fluid of "icy" materials above a small rocky core.</p>
+          </div>
+        </div>
+
+        <div class="celestial-row">
+          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <div class="celestial-info">
+            <h3>Neptune</h3>
+            <div class="celestial-meta">Ice Giant • 8th from Sun</div>
+            <p class="celestial-desc">The farthest known planet from the Sun. It is dark, cold, and whipped by supersonic winds, acting as the solar system's other ice giant.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="sec">
       <h2 class="sec-label">Development Log</h2>
       <div class="log-container" id="log-container"></div>
     </div>
@@ -112,7 +215,6 @@
         return;
       }
 
-      // Added Earth into the lineup!
       const planets = [
         { name: "Mercury", period: 0.2408, emoji: "☿️" },
         { name: "Venus", period: 0.6152, emoji: "♀️" },
