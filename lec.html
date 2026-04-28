@@ -113,7 +113,7 @@
         </div>
 
         <div class="celestial-row">
-          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <video class="celestial-vid" src="videos/Mercury.mp4" autoplay loop muted playsinline preload="auto"></video>
           <div class="celestial-info">
             <h3>Mercury</h3>
             <div class="celestial-meta">Terrestrial Planet • 1st from Sun</div>
@@ -256,7 +256,9 @@
     }
 
     // Development Log Generation
-    const weeklyVideos = { 1: "videos/Earth.mp4" };
+    const weeklyVideos = { 1: "videos/Earth.mp4",
+                           2: "videos/Mercury.mp4"
+     };
     const container = document.getElementById('log-container');
     let logHTML = '';
     
