@@ -74,7 +74,7 @@
     }
 
     .proj-title { 
-      font-size: 2.2rem; /* Fallback for older browsers */
+      font-size: 2.2rem;
       font-size: clamp(2.2rem, 5vw, 3.8rem); 
       font-weight: 800; 
       letter-spacing: -0.03em; 
@@ -144,6 +144,51 @@
     .detail-card ul { 
       list-style: none; 
       font-size: 0.9rem; 
+    }
+
+    /* Process Grid */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .step-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .step-number {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .step-media {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-color: #000;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .step-media img, .step-media iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      line-height: 1.4;
     }
 
     /* Dev Log Entry */
@@ -232,9 +277,13 @@
     }
 
     /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 600px) {
       .week-entry { grid-template-columns: 1fr; }
       .week-meta { border-right: none; border-bottom: 1px solid var(--border); padding: 1rem; }
+      .process-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -246,9 +295,19 @@
     <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Laboratory</p>
     <h1 class="proj-title">1-Minute Video Rotoscope</h1>
 
+    <h2>1 Minute Rotoscope Video</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/FwgqOTKjVBc" title="Featured Rotoscope Project" allowfullscreen></iframe>
+    </div>
+
+    <h2>Side-by-Side Reference and Final Output Video</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/qwnxjgnLDEg" title="Side-by-Side Reference and Final Output Video" allowfullscreen></iframe>
+    </div>
+
     <h2>Reference Video</h2>
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="Featured Rotoscope Project" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="Reference Rotoscope Video" allowfullscreen></iframe>
     </div>
 
     <div class="disclaimer-box">
@@ -274,6 +333,59 @@
     </div>
 
     <div class="sec">
+      <h2>Step-by-Step Process</h2>
+      <div class="process-grid">
+        <div class="step-card">
+          <span class="step-number">Step 1</span>
+          <div class="step-media">
+            <iframe src="https://www.youtube.com/embed/ZiYtg9HleNA" title="Reference Video" allowfullscreen></iframe>
+          </div>
+          <p class="step-desc">Select Reference Video from Youtube</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">Step 2</span>
+          <div class="step-media">
+            <img src="pictures/individ.png" alt="Individual Clips in DaVinci Resolve">
+          </div>
+          <p class="step-desc">Cut Reference Video into 5 Second Clips via "Individual Clips" on DaVinci Resolve</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">Step 3</span>
+          <div class="step-media">
+            <iframe src="https://www.youtube.com/embed/QJdoYCRVfb0" title="Krita Rotoscope Process" allowfullscreen></iframe>
+          </div>
+          <p class="step-desc">Import Video Animation onto Krita and Trace Per Frame (30FPS mandatory)</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">Step 4</span>
+          <div class="step-media">
+            <img src="pictures/compile.png" alt="Compile Rotoscoped Clips">
+          </div>
+          <p class="step-desc">Render and Compile all Rotoscoped Clips in DaVinci Resolve</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">Step 5</span>
+          <div class="step-media">
+            <img src="pictures/editing.png" alt="Edit Elements">
+          </div>
+          <p class="step-desc">Edit Elements using DaVinci Resolve (e.g. lyrics, background, chroma key)</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-number">Step 6</span>
+          <div class="step-media">
+            <img src="pictures/yt.png" alt="Upload to YouTube">
+          </div>
+          <p class="step-desc">Upload onto Youtube!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
       <h2>Development Log</h2>
       <div class="log-container" id="log-container"></div>
     </div>
@@ -288,6 +400,13 @@
       3: "CwETGbwqR2g",
       4: "9nAzN2yCAuU",
       5: "oyhRXv1UQLk",
+      6: "l7vl0rvBoHg",
+      7: "yxRBlCZH_do",
+      8: "zV5viSKQpFs",
+      9: "e3agDsnQRQo",
+      10: "cWhJNJPt2Ww",
+      11: "2TQQZo8yA8w",
+      12: "CfR9wOUiFA0",
     };
 
     const container = document.getElementById('log-container');
