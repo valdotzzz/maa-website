@@ -31,6 +31,15 @@
       line-height: 1.6; 
     }
 
+    footer { 
+      border-top: 1px solid var(--border); 
+      padding: 3rem 2.5rem; 
+      text-align: center; 
+      font-size: 0.85rem; 
+      color: var(--muted); 
+      background-color: var(--surface); 
+    }
+
     /* Navigation */
     nav { 
       position: fixed; 
@@ -302,6 +311,27 @@
       .celestial-row { grid-template-columns: 1fr; }
       .celestial-vid { border-right: none; border-bottom: 1px solid var(--border); }
     }
+
+    /* Video Display */
+    .video-container { 
+      position: relative; 
+      width: 100%; 
+      aspect-ratio: 16/9; 
+      background-color: #000; 
+      border-radius: 4px; 
+      overflow: hidden; 
+      border: 1px solid var(--border); 
+      margin-bottom: 4rem; 
+    }
+
+    .video-container iframe { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      border: 0; 
+    }
   </style>
 </head>
 <body>
@@ -312,18 +342,45 @@
     <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Lecture</p>
     <h1 class="proj-title">3D Solar System</h1>
 
-    <!-- TECHNICAL SPECS -->
+<div class="sec">
+    <div class="calc-box" style="padding: 1rem 1.5rem; margin-top: 1rem; margin-bottom: 2rem; border-left: 4px solid var(--accent);">
+      <p style="font-size: 0.85rem; margin: 0; line-height: 1.5; color: var(--text);">
+        <strong>Disclaimer:</strong> This material is used for educational and informational purposes only. All asset rights belong to their respective creators. No copyright infringement intended.
+      </p>
+    </div>
+
+    <h2>Full Render of The Solar System</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/ccNLk8971BU" title="Featured Blender Project" allowfullscreen></iframe>
+    </div>
+
     <div class="sec">
       <h2 class="sec-label">Technical Specifications</h2>
       <div class="details-grid">
         <div class="detail-card">
           <h3>Software & Engine</h3>
-          <ul><li>Blender 5.1</li><li>Python Scripting</li></ul>
+          <ul>
+            <li>Blender 5.1 (For 3D modeling and animation)</li>
+            <li>Python Scripting (For camera work and spinning logic)</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Render Specifications</h3>
+          <ul>
+            <li>4500 frames total (2 minutes 30 seconds)</li>
+            <li>1920x1080 30FPS</li>
+            <li>Rendering Time: 1 hour and 40 minutes</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Sources</h3>
+          <ul>
+            <li><a href="https://www.solarsystemscope.com/textures/" target="_blank" style="color: var(--accent); text-decoration: none;">Solar System Scope</a> (All textures)</li>
+          </ul>
         </div>
       </div>
     </div>
 
-    <!-- PLANETARY CALCULATOR -->
     <div class="calc-box">
       <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Planetary Data Calculator</h2>
       <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem;">Enter your age in Earth years to see how long you've been alive on other planets.</p>
@@ -334,13 +391,12 @@
       <div id="planetGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;"></div>
     </div>
 
-    <!-- CELESTIAL BODIES OVERVIEW -->
     <div class="sec">
       <h2 class="sec-label">Celestial Bodies Overview</h2>
       <div class="celestial-list">
         
         <div class="celestial-row">
-          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <video class="celestial-vid" src="videos/Sun.mp4" autoplay loop muted playsinline preload="auto"></video>
           <div class="celestial-info">
             <h3>Sun</h3>
             <div class="celestial-meta">Star • Yellow Dwarf</div>
@@ -403,7 +459,7 @@
         </div>
 
         <div class="celestial-row">
-          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <video class="celestial-vid" src="videos/Uranus.mp4" autoplay loop muted playsinline preload="auto"></video>
           <div class="celestial-info">
             <h3>Uranus</h3>
             <div class="celestial-meta">Ice Giant • 7th from Sun</div>
@@ -412,7 +468,7 @@
         </div>
 
         <div class="celestial-row">
-          <video class="celestial-vid" src="videos/na.mp4" autoplay loop muted playsinline preload="auto"></video>
+          <video class="celestial-vid" src="videos/Neptune.mp4" autoplay loop muted playsinline preload="auto"></video>
           <div class="celestial-info">
             <h3>Neptune</h3>
             <div class="celestial-meta">Ice Giant • 8th from Sun</div>
@@ -421,7 +477,7 @@
         </div>
 
         <div class="celestial-row">
-          <video class="celestial-vid" src="videos/na.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
+          <video class="celestial-vid" src="videos/Pluto.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
           <div class="celestial-info">
             <h3>Pluto</h3>
             <div class="celestial-meta">Dwarf Planet • Kuiper Belt</div>
@@ -432,10 +488,13 @@
       </div>
     </div>
 
-    <!-- RESOURCE DOWNLOADS -->
     <div class="sec">
       <h2 class="sec-label">Resource Downloads</h2>
       <div class="details-grid">
+        <div class="detail-card">
+          <h3>Sun</h3>
+          <ul><li><a href="resources/2k_sun.jpg" download class="download-link">↓ 2k_sun.jpg</a></li></ul>
+        </div>
         <div class="detail-card">
           <h3>Mercury</h3>
           <ul><li><a href="resources/2k_mercury.jpg" download class="download-link">↓ 2k_mercury.jpg</a></li></ul>
@@ -468,13 +527,44 @@
           <h3>Saturn</h3>
           <ul>
             <li><a href="resources/8k_saturn.jpg" download class="download-link">↓ 8k_saturn.jpg</a></li>
-            <li><a href="resources/8k_saturn_ring_alpha.png" download class="download-link">↓ 8k_saturn_ring_alpha.jpg</a></li>
+            <li><a href="resources/8k_saturn_ring_alpha.png" download class="download-link">↓ 8k_saturn_ring_alpha.png</a></li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Uranus</h3>
+          <ul>
+            <li><a href="resources/2k_uranus.jpg" download class="download-link">↓ 2k_uranus.jpg</a></li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Neptune</h3>
+          <ul>
+            <li><a href="resources/2k_neptune.jpg" download class="download-link">↓ 2k_neptune.jpg</a></li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Pluto</h3>
+          <ul>
+            <li><a href="resources/2k_pluto.jpg" download class="download-link">↓ 2k_pluto.jpg</a></li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Stars</h3>
+          <ul>
+            <li><a href="resources/2k_stars.jpg" download class="download-link">↓ 2k_stars.jpg</a></li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3>Mystery Giant Planet</h3>
+          <ul>
+            <li><a href="resources/4k_makemake_fictional.jpg" download class="download-link">↓ 4k_makemake_fictional.jpg</a></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- PYTHON SCRIPTING -->
+     <!-- PYTHON SCRIPTING -->
+
     <div class="sec">
       <h2 class="sec-label">Blender Automation Script</h2>
       <div class="calc-box" style="padding: 1.5rem;">
@@ -493,7 +583,9 @@ if planet:
     planet.animation_data_clear()
     planet.rotation_euler[2] = 0
     planet.keyframe_insert(data_path="rotation_euler", index=2, frame=1)
-    
+
+   
+
     planet.rotation_euler[2] = math.radians(360)
     planet.keyframe_insert(data_path="rotation_euler", index=2, frame=250)
 
@@ -504,19 +596,142 @@ if planet:
           </textarea>
         </div>
       </div>
+      <div class="calc-box" style="padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <p style="font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Camera_Positioning.py</p>
+          <button onclick="copyCode()" id="copyBtn" style="background: var(--accent); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Copy Code</button>
+        </div>
+        <div class="code-editor-container">
+          <textarea id="pythonScript" spellcheck="false">
+import bpy
+import math
+
+# Reference data matching the celestial mechanics script
+celestial_data = {
+    "Mercury": {"dist": 6.0,  "angle": 115.0},
+    "Venus":   {"dist": 9.0,  "angle": 150.0},
+    "Earth":   {"dist": 12.0, "angle": 270.0},
+    "Mars":    {"dist": 15.0, "angle": 15.0},
+    "Jupiter": {"dist": 22.0, "angle": 135.0},
+    "Saturn":  {"dist": 30.0, "angle": 355.0},
+    "Uranus":  {"dist": 37.0, "angle": 55.0},
+    "Neptune": {"dist": 43.0, "angle": 350.0},
+    "Pluto":   {"dist": 48.0, "angle": 305.0}
+}
+
+# Mercury cam_dist dropped from 2.95 to 2.65 to pull the camera safely out of the Sun mesh
+camera_sequence = [
+    {"clean_name": "Mercury", "display_name": "2 Mercury", "cam_dist": 2.65},
+    {"clean_name": "Venus",   "display_name": "3 Venus",   "cam_dist": 4.0},
+    {"clean_name": "Earth",   "display_name": "4 Earth",   "cam_dist": 4.5},
+    {"clean_name": "Mars",    "display_name": "5 Mars",    "cam_dist": 4.0},
+    {"clean_name": "Jupiter", "display_name": "6 Jupiter", "cam_dist": 9.0},
+    {"clean_name": "Saturn",  "display_name": "7 Saturn",  "cam_dist": 16.0}, 
+    {"clean_name": "Uranus",  "display_name": "8 Uranus",  "cam_dist": 8.0},
+    {"clean_name": "Neptune", "display_name": "9 Neptune", "cam_dist": 8.0},
+    {"clean_name": "Pluto",   "display_name": "X Pluto",   "cam_dist": 3.0}
+]
+
+def setup_final_cinematic_cameras():
+    scene = bpy.context.scene
+    scene.render.fps = 30
+    scene.frame_start = 1
+    scene.frame_end = 4500  
+    
+    scene.timeline_markers.clear()
+    
+    center_target = bpy.data.objects.get("Sun")
+    if not center_target:
+        center_target = bpy.data.objects.get("Cam_Target_Center")
+        if not center_target:
+            center_target = bpy.data.objects.new("Cam_Target_Center", None)
+            bpy.context.collection.objects.link(center_target)
+            center_target.location = (0, 0, 0)
+
+    # 1. GRAND OVERVIEW CAMERA
+    wide_cam_name = "Camera_Solar_System_Wide"
+    if wide_cam_name in bpy.data.objects:
+        bpy.data.objects.remove(bpy.data.objects[wide_cam_name], do_unlink=True)
+        
+    wide_cam_data = bpy.data.cameras.new(wide_cam_name)
+    wide_cam_obj = bpy.data.objects.new(wide_cam_name, wide_cam_data)
+    bpy.context.collection.objects.link(wide_cam_obj)
+    
+    wide_cam_obj.location = (0, -250, 180)
+    w_track = wide_cam_obj.constraints.new(type='TRACK_TO')
+    w_track.target = center_target
+    w_track.track_axis = 'TRACK_NEGATIVE_Z'
+    w_track.up_axis = 'UP_Y'
+
+    marker_start = scene.timeline_markers.new(name="Start_Wide", frame=1)
+    marker_start.camera = wide_cam_obj
+
+    # 2. PLANET TRACKING CAMERAS (30 FPS Calibration)
+    current_frame = 601  
+    
+    for config in camera_sequence:
+        clean = config["clean_name"]
+        display = config["display_name"]
+        
+        orb_anchor = next((o for o in bpy.data.objects if "anchor" in o.name.lower() and clean.lower() in o.name.lower()), None)
+        planet_mesh = bpy.data.objects.get(display)
+        
+        if orb_anchor and planet_mesh and clean in celestial_data:
+            data = celestial_data[clean]
+            cam_name = f"Camera_{clean}"
+            
+            if cam_name in bpy.data.objects:
+                bpy.data.objects.remove(bpy.data.objects[cam_name], do_unlink=True)
+                
+            cam_data = bpy.data.cameras.new(cam_name)
+            cam_obj = bpy.data.objects.new(cam_name, cam_data)
+            bpy.context.collection.objects.link(cam_obj)
+            
+            cam_obj.parent = orb_anchor
+            
+            # Position logic
+            rad_planet = math.radians(data["angle"])
+            p_x = data["dist"] * math.cos(rad_planet)
+            p_y = data["dist"] * math.sin(rad_planet)
+            
+            # Inside tracking vector, offset 30 degrees right
+            rad_cam_offset = math.radians(data["angle"] + 180.0 - 30.0)
+            
+            c_x = p_x + (config["cam_dist"] * math.cos(rad_cam_offset))
+            c_y = p_y + (config["cam_dist"] * math.sin(rad_cam_offset))
+            c_z = -config["cam_dist"] * math.tan(math.radians(15.0))
+            
+            cam_obj.location = (c_x, c_y, c_z)
+            
+            p_track = cam_obj.constraints.new(type='TRACK_TO')
+            p_track.target = planet_mesh
+            p_track.track_axis = 'TRACK_NEGATIVE_Z'
+            p_track.up_axis = 'UP_Y'
+            
+            marker = scene.timeline_markers.new(name=f"Cut_{clean}", frame=current_frame)
+            marker.camera = cam_obj
+            
+            current_frame += 300  
+            
+    # 3. CLOSING SHOT
+    marker_end = scene.timeline_markers.new(name="End_Wide", frame=3301)
+    marker_end.camera = wide_cam_obj
+
+setup_final_cinematic_cameras()
+
+          </textarea>
+        </div>
+      </div>
     </div>
 
-    <!-- DEVELOPMENT LOG -->
     <div class="sec">
       <h2 class="sec-label">Development Log</h2>
       <div class="log-container" id="log-container"></div>
     </div>
   </div>
 
-  <footer style="border-top: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; font-size: 0.85rem; color: var(--muted); background-color: var(--surface);">
-    Gean Clyde H. Valdez · BSIT-S-2A
-  </footer>
-
+  <footer>Gean Clyde H. Valdez · BSIT-S-2A</footer>
+  
   <script>
     function calculate() {
         const earthAge = document.getElementById('earthYears').value;
@@ -535,12 +750,18 @@ if planet:
             { name: "Jupiter", period: 11.862, emoji: "♃" },
             { name: "Saturn", period: 29.447, emoji: "♄" },
             { name: "Uranus", period: 84.016, emoji: "⛢" },
-            { name: "Neptune", period: 164.79, emoji: "♆" }
+            { name: "Neptune", period: 164.79, emoji: "♆" },
+            { name: "Pluto", period: 248.09, emoji: "♇" },
+            { name: "Sun", period: 0, emoji: "☀️", customLabel: "1 Earth Year = 0 Sun Year (Dead)" }
         ];
 
         let html = '';
         planets.forEach(planet => {
-            const planetAge = (earthAge / planet.period).toFixed(2);
+            // Handle age calculation logic cleanly, forcing 0.00 for the Sun
+            const planetAge = planet.name === "Sun" ? "0.00" : (earthAge / planet.period).toFixed(2);
+            // Use custom text for the Sun's footer metric, default to standard calculation for others
+            const footerText = planet.customLabel ? planet.customLabel : `1 Year = ${planet.period} Earth yrs`;
+
             html += `
                 <div class="detail-card" style="animation: fadeUp 0.4s ease forwards; padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                   <video src="videos/${planet.name}.mp4" 
@@ -557,7 +778,7 @@ if planet:
                       ${planetAge} <span style="font-size: 0.7rem; color: var(--muted);">years old</span>
                     </p>
                     <p style="font-size: 0.7rem; color: var(--muted); margin-top: 0.5rem; border-top: 1px solid var(--border); padding-top: 0.5rem;">
-                      1 Year = ${planet.period} Earth yrs
+                      ${footerText}
                     </p>
                   </div>
                 </div>`;
@@ -565,20 +786,31 @@ if planet:
         grid.innerHTML = html;
     }
 
-    function copyCode() {
-        const copyText = document.getElementById("pythonScript");
+    function copyCode(textId, btnId) {
+        const copyText = document.getElementById(textId);
         copyText.select();
         navigator.clipboard.writeText(copyText.value);
-        const btn = document.getElementById("copyBtn");
+        const btn = document.getElementById(btnId);
         btn.innerText = "Copied!";
         setTimeout(() => btn.innerText = "Copy Code", 2000);
     }
 
     // Dev Log Generation
-    const weeklyVideos = { 1: "videos/Earth.mp4", 2: "videos/Mercury.mp4", 3: "videos/Venus.mp4", 4: "videos/Mars.mp4", 5: "videos/Jupiter.mp4", 6: "videos/Saturn.mp4" };
+    const weeklyVideos = { 
+        1: "videos/Earth.mp4", 
+        2: "videos/Mercury.mp4", 
+        3: "videos/Venus.mp4", 
+        4: "videos/Mars.mp4", 
+        5: "videos/Jupiter.mp4", 
+        6: "videos/Saturn.mp4",
+        7: "videos/Uranus.mp4",
+        8: "videos/Neptune.mp4",
+        9: "videos/Pluto.mp4" 
+    };
+    
     const container = document.getElementById('log-container');
     let logHTML = '';
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 9; i++) {
         const videoPath = weeklyVideos[i] || "videos/na.mp4";
         logHTML += `
             <div class="week-entry">
