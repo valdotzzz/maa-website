@@ -31,13 +31,11 @@
       line-height: 1.6; 
     }
 
-    footer { 
-      border-top: 1px solid var(--border); 
-      padding: 3rem 2.5rem; 
-      text-align: center; 
-      font-size: 0.85rem; 
-      color: var(--muted); 
-      background-color: var(--surface); 
+    /* Isolated Layout Wrapper */
+    .site-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Navigation */
@@ -64,11 +62,23 @@
       text-decoration: none; 
     }
 
-    /* Layout Wrapper */
+    /* Layout Wrapper Content Area */
     .wrap { 
       max-width: 900px; 
       margin: 0 auto; 
       padding: 8rem 2.5rem 5rem; 
+      flex: 1 0 auto; /* Forces main section to grow and hold layout bounds */
+      width: 100%;
+    }
+
+    footer {
+      flex-shrink: 0; /* Prevents layout compression on shallow screens */
+      border-top: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      font-size: 0.85rem; 
+      color: var(--muted);
+      background-color: var(--surface);
     }
 
     .back-link { 
@@ -239,7 +249,7 @@
       margin-top: 1rem;
     }
 
-    #pythonScript {
+    .pythonScript {
       width: 100%;
       height: 300px;
       background: transparent;
@@ -335,245 +345,245 @@
   </style>
 </head>
 <body>
-  <nav><a class="nav-logo" href="index.html">MAA Portfolio</a></nav>
 
-  <div class="wrap">
-    <a class="back-link" href="index.html">← Back to Overview</a>
-    <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Lecture</p>
-    <h1 class="proj-title">3D Solar System</h1>
+  <div class="site-wrapper">
+    <nav><a class="nav-logo" href="index.html">MAA Portfolio</a></nav>
 
-<div class="sec">
-    <div class="calc-box" style="padding: 1rem 1.5rem; margin-top: 1rem; margin-bottom: 2rem; border-left: 4px solid var(--accent);">
-      <p style="font-size: 0.85rem; margin: 0; line-height: 1.5; color: var(--text);">
-        <strong>Disclaimer:</strong> This material is used for educational and informational purposes only. All asset rights belong to their respective creators. No copyright infringement intended.
-      </p>
-    </div>
+    <main class="wrap">
+      <a class="back-link" href="index.html">← Back to Overview</a>
+      <p style="font-size: 0.75rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Lecture</p>
+      <h1 class="proj-title">3D Solar System</h1>
 
-    <h2>Full Render of The Solar System</h2>
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/ccNLk8971BU" title="Featured Blender Project" allowfullscreen></iframe>
-    </div>
-
-    <div class="sec">
-      <h2 class="sec-label">Technical Specifications</h2>
-      <div class="details-grid">
-        <div class="detail-card">
-          <h3>Software & Engine</h3>
-          <ul>
-            <li>Blender 5.1 (For 3D modeling and animation)</li>
-            <li>Python Scripting (For camera work and spinning logic)</li>
-          </ul>
+      <div class="sec">
+        <div class="calc-box" style="padding: 1rem 1.5rem; margin-top: 1rem; margin-bottom: 2rem; border-left: 4px solid var(--accent);">
+          <p style="font-size: 0.85rem; margin: 0; line-height: 1.5; color: var(--text);">
+            <strong>Disclaimer:</strong> This material is used for educational and informational purposes only. All asset rights belong to their respective creators. No copyright infringement intended.
+          </p>
         </div>
-        <div class="detail-card">
-          <h3>Render Specifications</h3>
-          <ul>
-            <li>4500 frames total (2 minutes 30 seconds)</li>
-            <li>1920x1080 30FPS</li>
-            <li>Rendering Time: 1 hour and 40 minutes</li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Sources</h3>
-          <ul>
-            <li><a href="https://www.solarsystemscope.com/textures/" target="_blank" style="color: var(--accent); text-decoration: none;">Solar System Scope</a> (All textures)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="calc-box">
-      <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Planetary Data Calculator</h2>
-      <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem;">Enter your age in Earth years to see how long you've been alive on other planets.</p>
-      <div class="calc-row">
-        <input type="number" id="earthYears" placeholder="e.g., 20">
-        <button onclick="calculate()">Calculate</button>
-      </div>
-      <div id="planetGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;"></div>
-    </div>
+        <h2>Full Render of The Solar System</h2>
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/ccNLk8971BU" title="Featured Blender Project" allowfullscreen></iframe>
+        </div>
 
-    <div class="sec">
-      <h2 class="sec-label">Celestial Bodies Overview</h2>
-      <div class="celestial-list">
-        
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Sun.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Sun</h3>
-            <div class="celestial-meta">Star • Yellow Dwarf</div>
-            <p class="celestial-desc">A nearly perfect sphere of hot plasma at the center of our solar system, driving weather, seasons, and making life on Earth possible.</p>
+        <div class="sec">
+          <h2 class="sec-label">Technical Specifications</h2>
+          <div class="details-grid">
+            <div class="detail-card">
+              <h3>Software & Engine</h3>
+              <ul>
+                <li>Blender 5.1 (For 3D modeling and animation)</li>
+                <li>Python Scripting (For camera work and spinning logic)</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Render Specifications</h3>
+              <ul>
+                <li>4500 frames total (2 minutes 30 seconds)</li>
+                <li>1920x1080 30FPS</li>
+                <li>Rendering Time: 1 hour and 40 minutes</li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Sources</h3>
+              <ul>
+                <li><a href="https://www.solarsystemscope.com/textures/" target="_blank" style="color: var(--accent); text-decoration: none;">Solar System Scope</a> (All textures)</li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Mercury.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Mercury</h3>
-            <div class="celestial-meta">Terrestrial Planet • 1st from Sun</div>
-            <p class="celestial-desc">The smallest planet in our solar system and the closest to the Sun. It has a solid, cratered surface heavily influenced by space weather.</p>
+        <div class="calc-box">
+          <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Planetary Data Calculator</h2>
+          <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem;">Enter your age in Earth years to see how long you've been alive on other planets.</p>
+          <div class="calc-row">
+            <input type="number" id="earthYears" placeholder="e.g., 20">
+            <button onclick="calculate()">Calculate</button>
+          </div>
+          <div id="planetGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;"></div>
+        </div>
+
+        <div class="sec">
+          <h2 class="sec-label">Celestial Bodies Overview</h2>
+          <div class="celestial-list">
+            
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Sun.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Sun</h3>
+                <div class="celestial-meta">Star • Yellow Dwarf</div>
+                <p class="celestial-desc">A nearly perfect sphere of hot plasma at the center of our solar system, driving weather, seasons, and making life on Earth possible.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Mercury.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Mercury</h3>
+                <div class="celestial-meta">Terrestrial Planet • 1st from Sun</div>
+                <p class="celestial-desc">The smallest planet in our solar system and the closest to the Sun. It has a solid, cratered surface heavily influenced by space weather.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Venus.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Venus</h3>
+                <div class="celestial-meta">Terrestrial Planet • 2nd from Sun</div>
+                <p class="celestial-desc">Earth's "sister planet" characterized by a thick, toxic atmosphere filled with carbon dioxide, making it the hottest planet in the solar system.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Earth.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Earth</h3>
+                <div class="celestial-meta">Terrestrial Planet • 3rd from Sun</div>
+                <p class="celestial-desc">Our home planet. It is a water-rich world and currently the only known celestial body in the universe to harbor life.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Mars.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Mars</h3>
+                <div class="celestial-meta">Terrestrial Planet • 4th from Sun</div>
+                <p class="celestial-desc">Known as the Red Planet due to iron oxide on its surface. It is a dusty, cold, desert world with a very thin atmosphere.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Jupiter.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Jupiter</h3>
+                <div class="celestial-meta">Gas Giant • 5th from Sun</div>
+                <p class="celestial-desc">The largest planet in our solar system. It is a gas giant known for its Great Red Spot, a storm that has been raging for centuries.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Saturn.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Saturn</h3>
+                <div class="celestial-meta">Gas Giant • 6th from Sun</div>
+                <p class="celestial-desc">Distinguished by its massive, complex, and beautiful ring system made primarily of ice particles, rocky debris, and dust.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Uranus.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Uranus</h3>
+                <div class="celestial-meta">Ice Giant • 7th from Sun</div>
+                <p class="celestial-desc">An ice giant that rotates completely on its side. It is composed primarily of a hot, dense fluid of "icy" materials above a small rocky core.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Neptune.mp4" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Neptune</h3>
+                <div class="celestial-meta">Ice Giant • 8th from Sun</div>
+                <p class="celestial-desc">The farthest known planet from the Sun. It is dark, cold, and whipped by supersonic winds, acting as the solar system's other ice giant.</p>
+              </div>
+            </div>
+
+            <div class="celestial-row">
+              <video class="celestial-vid" src="videos/Pluto.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
+              <div class="celestial-info">
+                <h3>Pluto</h3>
+                <div class="celestial-meta">Dwarf Planet • Kuiper Belt</div>
+                <p class="celestial-desc">Once classified as the ninth planet, Pluto is a complex world of frozen nitrogen and ice mountains. It resides in the Kuiper Belt, a vast region of icy objects beyond the orbit of Neptune.</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Venus.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Venus</h3>
-            <div class="celestial-meta">Terrestrial Planet • 2nd from Sun</div>
-            <p class="celestial-desc">Earth's "sister planet" characterized by a thick, toxic atmosphere filled with carbon dioxide, making it the hottest planet in the solar system.</p>
+        <div class="sec">
+          <h2 class="sec-label">Resource Downloads</h2>
+          <div class="details-grid">
+            <div class="detail-card">
+              <h3>Sun</h3>
+              <ul><li><a href="resources/2k_sun.jpg" download class="download-link">↓ 2k_sun.jpg</a></li></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Mercury</h3>
+              <ul><li><a href="resources/2k_mercury.jpg" download class="download-link">↓ 2k_mercury.jpg</a></li></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Venus</h3>
+              <ul><li><a href="resources/8k_venus_surface.jpg" download class="download-link">↓ 8k_venus_surface.jpg</a></li></ul>
+            </div>
+            <div class="detail-card">
+              <h3>Earth</h3>
+              <ul>
+                <li><a href="resources/2k_earth_daymap.jpg" download class="download-link">↓ 2k_earth_daymap.jpg</a></li>
+                <li><a href="resources/2k_earth_normal_map.tif" download class="download-link">↓ 2k_earth_normal_map.tif</a></li>
+                <li><a href="resources/2k_earth_specular_map.tif" download class="download-link">↓ 2k_earth_specular_map.tif</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Mars</h3>
+              <ul>
+                <li><a href="resources/8k_mars.jpg" download class="download-link">↓ 8k_mars.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Jupiter</h3>
+              <ul>
+                <li><a href="resources/8k_jupiter.jpg" download class="download-link">↓ 8k_jupiter.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Saturn</h3>
+              <ul>
+                <li><a href="resources/8k_saturn.jpg" download class="download-link">↓ 8k_saturn.jpg</a></li>
+                <li><a href="resources/8k_saturn_ring_alpha.png" download class="download-link">↓ 8k_saturn_ring_alpha.png</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Uranus</h3>
+              <ul>
+                <li><a href="resources/2k_uranus.jpg" download class="download-link">↓ 2k_uranus.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Neptune</h3>
+              <ul>
+                <li><a href="resources/2k_neptune.jpg" download class="download-link">↓ 2k_neptune.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Pluto</h3>
+              <ul>
+                <li><a href="resources/2k_pluto.jpg" download class="download-link">↓ 2k_pluto.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Stars</h3>
+              <ul>
+                <li><a href="resources/2k_stars.jpg" download class="download-link">↓ 2k_stars.jpg</a></li>
+              </ul>
+            </div>
+            <div class="detail-card">
+              <h3>Mystery Giant Planet</h3>
+              <ul>
+                <li><a href="resources/4k_makemake_fictional.jpg" download class="download-link">↓ 4k_makemake_fictional.jpg</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Earth.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Earth</h3>
-            <div class="celestial-meta">Terrestrial Planet • 3rd from Sun</div>
-            <p class="celestial-desc">Our home planet. It is a water-rich world and currently the only known celestial body in the universe to harbor life.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Mars.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Mars</h3>
-            <div class="celestial-meta">Terrestrial Planet • 4th from Sun</div>
-            <p class="celestial-desc">Known as the Red Planet due to iron oxide on its surface. It is a dusty, cold, desert world with a very thin atmosphere.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Jupiter.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Jupiter</h3>
-            <div class="celestial-meta">Gas Giant • 5th from Sun</div>
-            <p class="celestial-desc">The largest planet in our solar system. It is a gas giant known for its Great Red Spot, a storm that has been raging for centuries.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Saturn.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Saturn</h3>
-            <div class="celestial-meta">Gas Giant • 6th from Sun</div>
-            <p class="celestial-desc">Distinguished by its massive, complex, and beautiful ring system made primarily of ice particles, rocky debris, and dust.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Uranus.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Uranus</h3>
-            <div class="celestial-meta">Ice Giant • 7th from Sun</div>
-            <p class="celestial-desc">An ice giant that rotates completely on its side. It is composed primarily of a hot, dense fluid of "icy" materials above a small rocky core.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Neptune.mp4" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Neptune</h3>
-            <div class="celestial-meta">Ice Giant • 8th from Sun</div>
-            <p class="celestial-desc">The farthest known planet from the Sun. It is dark, cold, and whipped by supersonic winds, acting as the solar system's other ice giant.</p>
-          </div>
-        </div>
-
-        <div class="celestial-row">
-          <video class="celestial-vid" src="videos/Pluto.mp4" onerror="this.onerror=null; this.src='videos/na.mp4';" autoplay loop muted playsinline preload="auto"></video>
-          <div class="celestial-info">
-            <h3>Pluto</h3>
-            <div class="celestial-meta">Dwarf Planet • Kuiper Belt</div>
-            <p class="celestial-desc">Once classified as the ninth planet, Pluto is a complex world of frozen nitrogen and ice mountains. It resides in the Kuiper Belt, a vast region of icy objects beyond the orbit of Neptune.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="sec">
-      <h2 class="sec-label">Resource Downloads</h2>
-      <div class="details-grid">
-        <div class="detail-card">
-          <h3>Sun</h3>
-          <ul><li><a href="resources/2k_sun.jpg" download class="download-link">↓ 2k_sun.jpg</a></li></ul>
-        </div>
-        <div class="detail-card">
-          <h3>Mercury</h3>
-          <ul><li><a href="resources/2k_mercury.jpg" download class="download-link">↓ 2k_mercury.jpg</a></li></ul>
-        </div>
-        <div class="detail-card">
-          <h3>Venus</h3>
-          <ul><li><a href="resources/8k_venus_surface.jpg" download class="download-link">↓ 8k_venus_surface.jpg</a></li></ul>
-        </div>
-        <div class="detail-card">
-          <h3>Earth</h3>
-          <ul>
-            <li><a href="resources/2k_earth_daymap.jpg" download class="download-link">↓ 2k_earth_daymap.jpg</a></li>
-            <li><a href="resources/2k_earth_normal_map.tif" download class="download-link">↓ 2k_earth_normal_map.tif</a></li>
-            <li><a href="resources/2k_earth_specular_map.tif" download class="download-link">↓ 2k_earth_specular_map.tif</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Mars</h3>
-          <ul>
-            <li><a href="resources/8k_mars.jpg" download class="download-link">↓ 8k_mars.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Jupiter</h3>
-          <ul>
-            <li><a href="resources/8k_jupiter.jpg" download class="download-link">↓ 8k_jupiter.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Saturn</h3>
-          <ul>
-            <li><a href="resources/8k_saturn.jpg" download class="download-link">↓ 8k_saturn.jpg</a></li>
-            <li><a href="resources/8k_saturn_ring_alpha.png" download class="download-link">↓ 8k_saturn_ring_alpha.png</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Uranus</h3>
-          <ul>
-            <li><a href="resources/2k_uranus.jpg" download class="download-link">↓ 2k_uranus.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Neptune</h3>
-          <ul>
-            <li><a href="resources/2k_neptune.jpg" download class="download-link">↓ 2k_neptune.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Pluto</h3>
-          <ul>
-            <li><a href="resources/2k_pluto.jpg" download class="download-link">↓ 2k_pluto.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Stars</h3>
-          <ul>
-            <li><a href="resources/2k_stars.jpg" download class="download-link">↓ 2k_stars.jpg</a></li>
-          </ul>
-        </div>
-        <div class="detail-card">
-          <h3>Mystery Giant Planet</h3>
-          <ul>
-            <li><a href="resources/4k_makemake_fictional.jpg" download class="download-link">↓ 4k_makemake_fictional.jpg</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-     <!-- PYTHON SCRIPTING -->
-
-    <div class="sec">
-      <h2 class="sec-label">Blender Automation Script</h2>
-      <div class="calc-box" style="padding: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <p style="font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">planet_rotation.py</p>
-          <button onclick="copyCode()" id="copyBtn" style="background: var(--accent); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Copy Code</button>
-        </div>
-        <div class="code-editor-container">
-          <textarea id="pythonScript" spellcheck="false">
+        <div class="sec">
+          <h2 class="sec-label">Blender Automation Script</h2>
+          <div class="calc-box" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <p style="font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">planet_rotation.py</p>
+              <button onclick="copyCode('codeRotation', 'copyBtn1')" id="copyBtn1" style="background: var(--accent); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Copy Code</button>
+            </div>
+            <div class="code-editor-container">
+              <textarea id="codeRotation" class="pythonScript" spellcheck="false">
 import bpy
 import math
 
@@ -584,8 +594,6 @@ if planet:
     planet.rotation_euler[2] = 0
     planet.keyframe_insert(data_path="rotation_euler", index=2, frame=1)
 
-   
-
     planet.rotation_euler[2] = math.radians(360)
     planet.keyframe_insert(data_path="rotation_euler", index=2, frame=250)
 
@@ -593,16 +601,16 @@ if planet:
     for fc in planet.animation_data.action.fcurves:
         for kp in fc.keyframe_points:
             kp.interpolation = 'LINEAR'
-          </textarea>
-        </div>
-      </div>
-      <div class="calc-box" style="padding: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <p style="font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Camera_Positioning.py</p>
-          <button onclick="copyCode()" id="copyBtn" style="background: var(--accent); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Copy Code</button>
-        </div>
-        <div class="code-editor-container">
-          <textarea id="pythonScript" spellcheck="false">
+              </textarea>
+            </div>
+          </div>
+          <div class="calc-box" style="padding: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <p style="font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase;">Camera_Positioning.py</p>
+              <button onclick="copyCode('codeCamera', 'copyBtn2')" id="copyBtn2" style="background: var(--accent); color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">Copy Code</button>
+            </div>
+            <div class="code-editor-container">
+              <textarea id="codeCamera" class="pythonScript" spellcheck="false">
 import bpy
 import math
 
@@ -718,20 +726,21 @@ def setup_final_cinematic_cameras():
     marker_end.camera = wide_cam_obj
 
 setup_final_cinematic_cameras()
+              </textarea>
+            </div>
+          </div>
+        </div>
 
-          </textarea>
+        <div class="sec">
+          <h2 class="sec-label">Development Log</h2>
+          <div class="log-container" id="log-container"></div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <div class="sec">
-      <h2 class="sec-label">Development Log</h2>
-      <div class="log-container" id="log-container"></div>
-    </div>
+    <footer> Gean Clyde H. Valdez · BSIT-S-2A </footer>
   </div>
 
-  <footer>Gean Clyde H. Valdez · BSIT-S-2A</footer>
-  
   <script>
     function calculate() {
         const earthAge = document.getElementById('earthYears').value;
@@ -757,9 +766,7 @@ setup_final_cinematic_cameras()
 
         let html = '';
         planets.forEach(planet => {
-            // Handle age calculation logic cleanly, forcing 0.00 for the Sun
             const planetAge = planet.name === "Sun" ? "0.00" : (earthAge / planet.period).toFixed(2);
-            // Use custom text for the Sun's footer metric, default to standard calculation for others
             const footerText = planet.customLabel ? planet.customLabel : `1 Year = ${planet.period} Earth yrs`;
 
             html += `
